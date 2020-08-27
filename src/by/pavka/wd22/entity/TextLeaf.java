@@ -1,5 +1,6 @@
 package by.pavka.wd22.entity;
 
+import java.text.StringCharacterIterator;
 import java.util.Iterator;
 import java.util.Objects;
 
@@ -26,7 +27,7 @@ public class TextLeaf implements TextNode {
 
     @Override
     public Iterator<TextNode> createIterator() {
-        return null;
+        return new TextLeafIterator();
     }
 
     @Override

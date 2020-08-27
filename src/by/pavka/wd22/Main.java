@@ -11,5 +11,6 @@ public class Main {
     deque.addLast("a");
     deque.addLast("b");
     System.out.println(deque.getFirst());
+    String s = new String("nnn");
   }
 }
