@@ -3,10 +3,15 @@ package by.pavka.wd22.entity;
 import java.util.*;
 
 public class TextComposite implements TextNode {
-  private Deque<TextNode> textNodes;
+  public Deque<TextNode> textNodes;
+  private String unhandledText;
 
   public TextComposite() {
     textNodes = new ArrayDeque<>();
+  }
+
+  public void setUnhandledText(String unhandledText) {
+    this.unhandledText = unhandledText;
   }
 
   @Override
@@ -30,6 +35,9 @@ public class TextComposite implements TextNode {
     Iterator<TextNode> iterator = createIterator();
     while (iterator.hasNext()) {
       stringBuilder.append(iterator.next().toString());
+    }
+    if (unhandledText != null) {
+      stringBuilder.append(unhandledText);
     }
     return stringBuilder.toString();
   }
