@@ -17,7 +17,7 @@ public class Main {
     TextNode child2 = new TextComposite();
     root.add(child1);
     root.add(child2);
-    TextNode leaf1 = new TextLeaf("Evening.");
+    TextNode leaf1 = new TextLeaf("Evening .");
     TextNode leaf2 = new TextLeaf("That");
     TextNode leaf3 = new TextLeaf("was");
     TextNode leaf4 = new TextLeaf("fine");
@@ -29,7 +29,7 @@ public class Main {
     child2.add(leaf5);
     String text = root.toString();
     System.out.println(text);
-    TextParser textParser = new TextParserImpl(".*?\\.", ".*? ");
+    TextParser textParser = new TextParserImpl(".*?\\.", null);
     TextParser childParser = new TextParserImpl(null, ".*? ");
     textParser.setChild(childParser);
     TextNode result = textParser.parse(text, null);
