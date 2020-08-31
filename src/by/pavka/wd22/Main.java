@@ -29,14 +29,15 @@ public class Main {
     child2.add(leaf5);
     String text = root.toString();
     System.out.println(text);
-    TextParser textParser = new TextParserImpl(".*?\\.", null);
+    TextParser textParser = new TextParserImpl("([A-Z]{1}[\\w\\d\\s\\-\\,\\:\\;]+[\\.\\!\\?]{1," +
+            "3})\\s", null);
     TextParser childParser = new TextParserImpl(null, ".*? ");
     textParser.setChild(childParser);
     TextNode result = textParser.parse(text);
     System.out.println("Parsed");
     System.out.println(result.toString());
     System.out.println((((TextComposite)result).textNodes.size()));
-    TextNode result2 = textParser.parse("It was rainy. I walked along a street. I smiled.");
+    TextNode result2 = textParser.parse("It was rainy... I walked along a street. I smiled!! ");
     System.out.println(result2);
   }
 }
