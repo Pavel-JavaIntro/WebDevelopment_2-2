@@ -32,9 +32,11 @@ public class Main {
     TextParser textParser = new TextParserImpl(".*?\\.", null);
     TextParser childParser = new TextParserImpl(null, ".*? ");
     textParser.setChild(childParser);
-    TextNode result = textParser.parse(text, null);
+    TextNode result = textParser.parse(text);
     System.out.println("Parsed");
     System.out.println(result.toString());
     System.out.println((((TextComposite)result).textNodes.size()));
+    TextNode result2 = textParser.parse("It was rainy. I walked along a street. I smiled.");
+    System.out.println(result2);
   }
 }

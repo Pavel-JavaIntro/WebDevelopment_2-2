@@ -19,7 +19,7 @@ public class TextParserImpl implements TextParser {
   }
 
   @Override
-  public TextNode parse(String text, TextNode parent) {
+  public TextNode parse(String text) {
     TextComposite result = new TextComposite();
     while (!text.isEmpty()) {
       String fragment;
@@ -37,15 +37,12 @@ public class TextParserImpl implements TextParser {
         case COMPOSITE:
           fragment = TextNodeType.COMPOSITE.getTextFragment();
           System.out.println("INSIDE SWITCH COMPOSITE " + fragment);
-          TextNode composite = child.parse(fragment, null);
+          TextNode composite = child.parse(fragment);
           result.add(composite);
           text = text.substring(fragment.length());
           break;
         default:
       }
-    }
-    if (parent != null) {
-      parent.add(result);
     }
     return result;
   }
