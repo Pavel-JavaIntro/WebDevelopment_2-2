@@ -28,7 +28,6 @@ public class TextParserImpl implements TextParser {
           result.setUnhandledText(text);
           return result;
         case LEAF:
-          //TODO
           fragment = TextNodeType.LEAF.getTextFragment();
           System.out.println("INSIDE SWITCH LEAF " + fragment);
           TextLeaf leaf = new TextLeaf(fragment);
@@ -36,7 +35,6 @@ public class TextParserImpl implements TextParser {
           text = text.substring(fragment.length());
           break;
         case COMPOSITE:
-          // TODO
           fragment = TextNodeType.COMPOSITE.getTextFragment();
           System.out.println("INSIDE SWITCH COMPOSITE " + fragment);
           TextNode composite = child.parse(fragment, null);
