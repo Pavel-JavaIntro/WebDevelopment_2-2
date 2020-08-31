@@ -29,7 +29,7 @@ public class TextParserImpl implements TextParser {
           return result;
         case LEAF:
           fragment = TextNodeType.LEAF.getTextFragment();
-          System.out.println("INSIDE SWITCH LEAF " + fragment);
+          System.out.println("INSIDE SWITCH LEAF " + fragment + " " + fragment.length());
           TextLeaf leaf = new TextLeaf(fragment);
           result.add(leaf);
           text = text.substring(fragment.length());
