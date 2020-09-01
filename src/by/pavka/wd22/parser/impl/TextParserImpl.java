@@ -1,8 +1,9 @@
-package by.pavka.wd22.parser;
+package by.pavka.wd22.parser.impl;
 
-import by.pavka.wd22.entity.TextComposite;
-import by.pavka.wd22.entity.TextLeaf;
+import by.pavka.wd22.entity.impl.TextComposite;
+import by.pavka.wd22.entity.impl.TextLeaf;
 import by.pavka.wd22.entity.TextNode;
+import by.pavka.wd22.parser.TextParser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

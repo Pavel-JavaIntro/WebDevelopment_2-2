@@ -1,14 +1,8 @@
-package by.pavka.wd22;
+package by.pavka.wd22.view;
 
-import by.pavka.wd22.entity.TextComposite;
-import by.pavka.wd22.entity.TextLeaf;
 import by.pavka.wd22.entity.TextNode;
 import by.pavka.wd22.parser.PredefinedTextParserFactory;
 import by.pavka.wd22.parser.TextParser;
-import by.pavka.wd22.parser.TextParserImpl;
-
-import java.util.ArrayDeque;
-import java.util.Deque;
 
 public class Main {
   private static final String SENTENCE_BLOCK =

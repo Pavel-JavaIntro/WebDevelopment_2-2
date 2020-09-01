@@ -1,5 +1,7 @@
 package by.pavka.wd22.parser;
 
+import by.pavka.wd22.parser.impl.TextParserImpl;
+
 public class PredefinedTextParserFactory {
   private static final PredefinedTextParserFactory instance = new PredefinedTextParserFactory();
   private static final String SENTENCE_BLOCK =
