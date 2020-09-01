@@ -49,7 +49,6 @@ public class Main {
     TextParser textParser = PredefinedTextParserFactory.getInstance().getParser();
     TextNode result = textParser.parse(text);
     System.out.println("Parsed");
-    System.out.println(result.toString());
-
+    System.out.println(result.toText());
   }
 }

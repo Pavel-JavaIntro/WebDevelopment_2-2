@@ -13,9 +13,8 @@ public class TextLeaf implements TextNode {
     }
   }
 
-  @Override
-  public boolean isLeaf() {
-    return true;
+  public String getValue() {
+    return value;
   }
 
   @Override
@@ -29,12 +28,17 @@ public class TextLeaf implements TextNode {
   }
 
   @Override
-  public String toString() {
+  public String toText() {
     String processedValue = value;
     if (value.startsWith(" ") | value.startsWith("\t")) {
       processedValue = value.replaceAll("^[ \t]+", " ");
     }
     return " LEAF " + processedValue;
+  }
+
+  @Override
+  public String toString() {
+    return getValue().trim();
   }
 
   @Override

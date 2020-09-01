@@ -15,11 +15,6 @@ public class TextComposite implements TextNode {
   }
 
   @Override
-  public boolean isLeaf() {
-    return false;
-  }
-
-  @Override
   public boolean add(TextNode textNode) {
     return textNodes.offer(textNode);
   }
@@ -30,11 +25,11 @@ public class TextComposite implements TextNode {
   }
 
   @Override
-  public String toString() {
+  public String toText() {
     StringBuilder stringBuilder = new StringBuilder();
     Iterator<TextNode> iterator = createIterator();
     while (iterator.hasNext()) {
-      stringBuilder.append(iterator.next().toString());
+      stringBuilder.append(iterator.next().toText());
     }
     if (unhandledText != null) {
       stringBuilder.append(unhandledText);
