@@ -22,16 +22,16 @@ public class TextParserImpl implements TextParser {
 
   @Override
   public TextNode parse(String text) {
-    TextComposite result = new TextComposite();
+    TextNode result = new TextComposite();
     while (!text.isEmpty()) {
       String fragment;
       switch (nextNodeType(text)) {
         case NONE:
-          result.setUnhandledText(text);
+          ((TextComposite)result).setUnhandledText(text);
           return result;
         case LEAF:
           fragment = TextNodeType.LEAF.getTextFragment();
-          TextLeaf leaf = new TextLeaf(fragment);
+          TextNode leaf = new TextLeaf(fragment);
           result.add(leaf);
           text = text.substring(fragment.length());
           break;
