@@ -3,6 +3,7 @@ package by.pavka.wd22;
 import by.pavka.wd22.entity.TextComposite;
 import by.pavka.wd22.entity.TextLeaf;
 import by.pavka.wd22.entity.TextNode;
+import by.pavka.wd22.parser.PredefinedTextParserFactory;
 import by.pavka.wd22.parser.TextParser;
 import by.pavka.wd22.parser.TextParserImpl;
 
@@ -42,11 +43,13 @@ public class Main {
                 "= " +
                 "i; String s = \"line\";" +
                 "</code>";
-    TextParser textParser = new TextParserImpl(SENTENCE_BLOCK, CODE_BLOCK);
-    TextParser childParser = new TextParserImpl(null, WORD_BLOCK + "|" + CODE_BLOCK);
-    textParser.setChild(childParser);
+//    TextParser textParser = new TextParserImpl(SENTENCE_BLOCK, CODE_BLOCK);
+//    TextParser childParser = new TextParserImpl(null, WORD_BLOCK + "|" + CODE_BLOCK);
+//    textParser.setChild(childParser);
+    TextParser textParser = PredefinedTextParserFactory.getInstance().getParser();
     TextNode result = textParser.parse(text);
     System.out.println("Parsed");
     System.out.println(result.toString());
+
   }
 }

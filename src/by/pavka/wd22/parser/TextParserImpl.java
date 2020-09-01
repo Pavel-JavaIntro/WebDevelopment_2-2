@@ -14,6 +14,7 @@ public class TextParserImpl implements TextParser {
 
   public TextParserImpl(String compositeFormat, String leafFormat) {
     // TODO check null
+    System.out.println("Parser");
     this.compositeFormat = compositeFormat;
     this.leafFormat = leafFormat;
   }
