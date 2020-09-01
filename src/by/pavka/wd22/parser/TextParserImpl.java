@@ -29,14 +29,12 @@ public class TextParserImpl implements TextParser {
           return result;
         case LEAF:
           fragment = TextNodeType.LEAF.getTextFragment();
-          System.out.println("INSIDE SWITCH LEAF " + fragment + " " + fragment.length());
           TextLeaf leaf = new TextLeaf(fragment);
           result.add(leaf);
           text = text.substring(fragment.length());
           break;
         case COMPOSITE:
           fragment = TextNodeType.COMPOSITE.getTextFragment();
-          System.out.println("INSIDE SWITCH COMPOSITE " + fragment);
           TextNode composite = child.parse(fragment);
           result.add(composite);
           text = text.substring(fragment.length());
