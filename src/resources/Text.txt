@@ -1,0 +1,6 @@
+First, second; third! My name is Pavel. "The Beatles" was established in 1960. 2 Years later...
+Self-made man Jo from IBM -         a computer         manufacturer - likes "Latto".
+<code> int i = 9;
+String s = new String();
+</code>
+In this fragment <code> int a = false </code> there is a mistake. Indeed?

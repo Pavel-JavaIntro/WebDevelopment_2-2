@@ -2,8 +2,11 @@ package by.pavka.wd22.view;
 
 import by.pavka.wd22.TextParserException;
 import by.pavka.wd22.entity.TextNode;
+import by.pavka.wd22.model.TextFromFileReader;
 import by.pavka.wd22.parser.PredefinedTextParserFactory;
 import by.pavka.wd22.parser.TextParser;
+
+import java.io.IOException;
 
 public class Main {
   private static final String SENTENCE_BLOCK =
@@ -11,7 +14,7 @@ public class Main {
   public static final String CODE_BLOCK = "\\s*<code>(?s).*?</code>";
   public static final String WORD_BLOCK = "(\\s*[\\w\"\\'\\-]+)|\\p{Punct}";
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     String text =
         "Love me,    tender; love me sweet. Never let me go...    \n"
             + "Your      love makes my life complete! It's 5 o'clock!?    \"Immortal\" combat.\n"
@@ -26,6 +29,13 @@ public class Main {
       e.printStackTrace();
       System.out.println("Unhandled: " + e.unhadledText() + " " + e.unhadledText().length());
     }
-    System.out.println(result.toText());
+    String t = new TextFromFileReader().read();
+    try {
+      result = textParser.parse(t);
+      System.out.println(result.toText());
+    } catch (TextParserException e) {
+      e.printStackTrace();
+      System.out.println("Unhandled: " + e.unhadledText() + " " + e.unhadledText().length());
+    }
   }
 }
