@@ -12,8 +12,14 @@ public class TextComposite implements TextNode {
     textNodes = new ArrayDeque<>();
   }
 
+  @Override
   public void setUnhandledText(String unhandledText) {
     this.unhandledText = unhandledText;
+  }
+
+  @Override
+  public String getUnhandledText() {
+    return unhandledText;
   }
 
   @Override

@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 public class TextLeaf implements TextNode {
   private String value;
+  private String unhandledText;
 
   public TextLeaf(String value) {
     if (value != null) {
@@ -30,12 +31,22 @@ public class TextLeaf implements TextNode {
   }
 
   @Override
+  public void setUnhandledText(String text) {
+    unhandledText = text;
+  }
+
+  @Override
+  public String getUnhandledText() {
+    return unhandledText;
+  }
+
+  @Override
   public String toText() {
     String processedValue = value;
     if (value.startsWith(" ") | value.startsWith("\t")) {
       processedValue = value.replaceAll("^[ \t]+", " ");
     }
-    return " LEAF " + processedValue;
+    return processedValue;
   }
 
   @Override

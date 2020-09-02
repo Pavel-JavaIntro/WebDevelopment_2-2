@@ -1,5 +1,6 @@
 package by.pavka.wd22.parser.impl;
 
+import by.pavka.wd22.TextParserException;
 import by.pavka.wd22.entity.impl.TextComposite;
 import by.pavka.wd22.entity.impl.TextLeaf;
 import by.pavka.wd22.entity.TextNode;
@@ -21,22 +22,24 @@ public class TextParserImpl implements TextParser {
   }
 
   @Override
-  public TextNode parse(String text) {
+  public TextNode parse(String text) throws TextParserException {
     TextNode result = new TextComposite();
     while (!text.isEmpty()) {
       String fragment;
       switch (nextNodeType(text)) {
         case NONE:
-          ((TextComposite)result).setUnhandledText(text);
-          return result;
+          result.setUnhandledText(text);
+          throw new TextParserException("Text not parsed", result);
         case LEAF:
           fragment = TextNodeType.LEAF.getTextFragment();
+          System.out.println("LEAF: " + fragment);
           TextNode leaf = new TextLeaf(fragment);
           result.add(leaf);
           text = text.substring(fragment.length());
           break;
         case COMPOSITE:
           fragment = TextNodeType.COMPOSITE.getTextFragment();
+          System.out.println("COMPOSITE: " + fragment + " " + fragment.length());
           TextNode composite = child.parse(fragment);
           result.add(composite);
           text = text.substring(fragment.length());
