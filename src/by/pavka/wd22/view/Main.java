@@ -15,11 +15,9 @@ public class Main {
     String text =
         "Love me,    tender; love me sweet. Never let me go...    \n"
             + "Your      love makes my life complete! It's 5 o'clock!?    \"Immortal\" combat.\n"
-            + "33 Dead self-flying <code> class Test() {}</code> men.\n <code>   int i = 8;\nint " +
-                "j " +
-                "= " +
-                "i; String s = \"line\";" +
-                "</code>";
+            + "33 Dead self-flying <code> class Test() {}</code> men.\n <code>   int i = 8;\nint "
+            + "j = i; String s = \"line\"; </code>";
+
     TextParser textParser = PredefinedTextParserFactory.getInstance().getParser();
     TextNode result = null;
     try {
