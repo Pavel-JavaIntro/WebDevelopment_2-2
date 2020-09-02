@@ -5,7 +5,7 @@ import by.pavka.wd22.entity.TextNode;
 import java.util.*;
 
 public class TextComposite implements TextNode {
-  public Deque<TextNode> textNodes;
+  private Deque<TextNode> textNodes;
   private String unhandledText;
 
   public TextComposite() {

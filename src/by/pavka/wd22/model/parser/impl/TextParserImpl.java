@@ -1,10 +1,10 @@
-package by.pavka.wd22.parser.impl;
+package by.pavka.wd22.model.parser.impl;
 
-import by.pavka.wd22.TextParserException;
+import by.pavka.wd22.model.TextParserException;
 import by.pavka.wd22.entity.impl.TextComposite;
 import by.pavka.wd22.entity.impl.TextLeaf;
 import by.pavka.wd22.entity.TextNode;
-import by.pavka.wd22.parser.TextParser;
+import by.pavka.wd22.model.parser.TextParser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,7 +15,6 @@ public class TextParserImpl implements TextParser {
   private TextParser child;
 
   public TextParserImpl(String compositeFormat, String leafFormat) {
-    // TODO check null
     this.compositeFormat = compositeFormat;
     this.leafFormat = leafFormat;
   }
@@ -23,25 +22,23 @@ public class TextParserImpl implements TextParser {
   @Override
   public TextNode parse(String text) throws TextParserException {
     TextNode result = new TextComposite();
-    while (!text.isEmpty()) {
-      String fragment;
+    while (text != null && !text.isEmpty()) {
+      String textFragment;
       switch (nextNodeType(text)) {
         case NONE:
           result.setUnhandledText(text);
           throw new TextParserException("Text not parsed", result);
         case LEAF:
-          fragment = TextNodeType.LEAF.getTextFragment();
-          System.out.println("LEAF: " + fragment);
-          TextNode leaf = new TextLeaf(fragment);
+          textFragment = TextNodeType.LEAF.getTextFragment();
+          TextNode leaf = new TextLeaf(textFragment);
           result.add(leaf);
-          text = text.substring(fragment.length());
+          text = text.substring(textFragment.length());
           break;
         case COMPOSITE:
-          fragment = TextNodeType.COMPOSITE.getTextFragment();
-          System.out.println("COMPOSITE: " + fragment + " " + fragment.length());
-          TextNode composite = child.parse(fragment);
+          textFragment = TextNodeType.COMPOSITE.getTextFragment();
+          TextNode composite = child.parse(textFragment);
           result.add(composite);
-          text = text.substring(fragment.length());
+          text = text.substring(textFragment.length());
           break;
         default:
       }
@@ -63,20 +60,20 @@ public class TextParserImpl implements TextParser {
     if (leafFormat != null) {
       leafPattern = Pattern.compile(leafFormat);
     }
-    String message = null;
+    String textFragment;
     if (leafPattern != null) {
       Matcher leafMatcher = leafPattern.matcher(text);
       if (leafMatcher.lookingAt()) {
-        message = leafMatcher.group();
-        TextNodeType.LEAF.setTextFragment(message);
+        textFragment = leafMatcher.group();
+        TextNodeType.LEAF.setTextFragment(textFragment);
         return TextNodeType.LEAF;
       }
     }
     if (compositePattern != null) {
       Matcher compositeMatcher = compositePattern.matcher(text);
       if (compositeMatcher.lookingAt()) {
-        message = compositeMatcher.group();
-        TextNodeType.COMPOSITE.setTextFragment(message);
+        textFragment = compositeMatcher.group();
+        TextNodeType.COMPOSITE.setTextFragment(textFragment);
         return TextNodeType.COMPOSITE;
       }
     }

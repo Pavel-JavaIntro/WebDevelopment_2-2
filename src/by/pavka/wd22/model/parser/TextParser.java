@@ -1,6 +1,6 @@
-package by.pavka.wd22.parser;
+package by.pavka.wd22.model.parser;
 
-import by.pavka.wd22.TextParserException;
+import by.pavka.wd22.model.TextParserException;
 import by.pavka.wd22.entity.TextNode;
 
 public interface TextParser {

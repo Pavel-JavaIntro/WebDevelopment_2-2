@@ -1,18 +1,14 @@
 package by.pavka.wd22.view;
 
-import by.pavka.wd22.TextParserException;
+import by.pavka.wd22.model.TextParserException;
 import by.pavka.wd22.entity.TextNode;
-import by.pavka.wd22.model.TextFromFileReader;
-import by.pavka.wd22.parser.PredefinedTextParserFactory;
-import by.pavka.wd22.parser.TextParser;
+import by.pavka.wd22.model.parser.PredefinedTextParserFactory;
+import by.pavka.wd22.model.parser.TextParser;
+import by.pavka.wd22.model.reader.TextFileReader;
 
 import java.io.IOException;
 
 public class Main {
-  private static final String SENTENCE_BLOCK =
-      "(\"*\\d*\\s?[A-Z]{1}[\\w\\s\\-\\,\\:\\;\\'\"\\<\\>\\/\\{\\}\\(\\)\\%\\=]+[\\.\\!\\?]+\\s*)";
-  public static final String CODE_BLOCK = "\\s*<code>(?s).*?</code>";
-  public static final String WORD_BLOCK = "(\\s*[\\w\"\\'\\-]+)|\\p{Punct}";
 
   public static void main(String[] args) throws IOException {
     String text =
@@ -25,17 +21,18 @@ public class Main {
     TextNode result = null;
     try {
       result = textParser.parse(text);
+      System.out.println(result.toText());
     } catch (TextParserException e) {
       e.printStackTrace();
-      System.out.println("Unhandled: " + e.unhadledText() + " " + e.unhadledText().length());
+      System.out.println("Unhandled: " + e.unhandledText());
     }
-    String t = new TextFromFileReader().read();
+    String t = new TextFileReader().read();
     try {
       result = textParser.parse(t);
       System.out.println(result.toText());
     } catch (TextParserException e) {
       e.printStackTrace();
-      System.out.println("Unhandled: " + e.unhadledText() + " " + e.unhadledText().length());
+      System.out.println("Unhandled: " + e.unhandledText());
     }
   }
 }

@@ -1,4 +1,4 @@
-package by.pavka.wd22;
+package by.pavka.wd22.model;
 
 import by.pavka.wd22.entity.TextNode;
 
@@ -28,7 +28,7 @@ public class TextParserException extends Exception {
     return textNode;
   }
 
-  public String unhadledText() {
+  public String unhandledText() {
     return textNode.getUnhandledText();
   }
 }

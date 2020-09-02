@@ -1,9 +1,9 @@
-package by.pavka.wd22.model;
+package by.pavka.wd22.model.reader;
 
 import java.io.*;
 import java.util.ResourceBundle;
 
-public class TextFromFileReader {
+public class TextFileReader {
   private static final String filePath = ResourceBundle.getBundle("textfile")
           .getString("file_path");
 
