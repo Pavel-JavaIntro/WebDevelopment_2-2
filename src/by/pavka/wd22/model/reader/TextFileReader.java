@@ -1,11 +1,20 @@
 package by.pavka.wd22.model.reader;
 
+import by.pavka.wd22.model.TextProcessingException;
+
 import java.io.*;
 import java.util.ResourceBundle;
 
 public class TextFileReader {
+  private static final TextFileReader instance = new TextFileReader();
   private static final String filePath = ResourceBundle.getBundle("textfile")
           .getString("file_path");
+
+  private TextFileReader() {}
+
+  public static TextFileReader getInstance() {
+    return instance;
+  }
 
   public String read() throws IOException {
     StringBuilder builder = new StringBuilder();

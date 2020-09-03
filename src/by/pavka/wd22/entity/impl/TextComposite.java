@@ -39,9 +39,6 @@ public class TextComposite implements TextNode {
     while (iterator.hasNext()) {
       stringBuilder.append(iterator.next().toText());
     }
-    if (unhandledText != null) {
-      stringBuilder.append(unhandledText);
-    }
     return stringBuilder.toString();
   }
 

@@ -1,11 +1,13 @@
 package by.pavka.wd22.model.parser.impl;
 
-import by.pavka.wd22.model.TextParserException;
+import by.pavka.wd22.model.TextProcessingException;
 import by.pavka.wd22.entity.impl.TextComposite;
 import by.pavka.wd22.entity.impl.TextLeaf;
 import by.pavka.wd22.entity.TextNode;
 import by.pavka.wd22.model.parser.TextParser;
+import by.pavka.wd22.model.reader.TextFileReader;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,22 +22,24 @@ public class TextParserImpl implements TextParser {
   }
 
   @Override
-  public TextNode parse(String text) throws TextParserException {
+  public TextNode parse(String text) throws TextProcessingException {
     TextNode result = new TextComposite();
     while (text != null && !text.isEmpty()) {
       String textFragment;
       switch (nextNodeType(text)) {
         case NONE:
           result.setUnhandledText(text);
-          throw new TextParserException("Text not parsed", result);
+          throw new TextProcessingException("Text not parsed", result);
         case LEAF:
           textFragment = TextNodeType.LEAF.getTextFragment();
+          System.out.println("LEAF: " + textFragment);
           TextNode leaf = new TextLeaf(textFragment);
           result.add(leaf);
           text = text.substring(textFragment.length());
           break;
         case COMPOSITE:
           textFragment = TextNodeType.COMPOSITE.getTextFragment();
+          System.out.println("COMPOSITE: " + textFragment);
           TextNode composite = child.parse(textFragment);
           result.add(composite);
           text = text.substring(textFragment.length());
@@ -44,6 +48,19 @@ public class TextParserImpl implements TextParser {
       }
     }
     return result;
+  }
+
+  @Override
+  public TextNode parseFromFile() throws TextProcessingException {
+    TextFileReader textFileReader = TextFileReader.getInstance();
+    String text;
+    try {
+      text = textFileReader.read();
+      System.out.println("FROM FILE: " + text);
+    } catch (IOException e) {
+      throw new TextProcessingException("Cannot read from the file", e, null);
+    }
+    return parse(text);
   }
 
   @Override

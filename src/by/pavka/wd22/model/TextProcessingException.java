@@ -2,24 +2,24 @@ package by.pavka.wd22.model;
 
 import by.pavka.wd22.entity.TextNode;
 
-public class TextParserException extends Exception {
+public class TextProcessingException extends Exception {
   private TextNode textNode;
 
-  public TextParserException(TextNode textNode) {
+  public TextProcessingException(TextNode textNode) {
     this.textNode = textNode;
   }
 
-  public TextParserException(String message, TextNode textNode) {
+  public TextProcessingException(String message, TextNode textNode) {
     super(message);
     this.textNode = textNode;
   }
 
-  public TextParserException(String message, Throwable cause, TextNode textNode) {
+  public TextProcessingException(String message, Throwable cause, TextNode textNode) {
     super(message, cause);
     this.textNode = textNode;
   }
 
-  public TextParserException(Throwable cause, TextNode textNode) {
+  public TextProcessingException(Throwable cause, TextNode textNode) {
     super(cause);
     this.textNode = textNode;
   }
