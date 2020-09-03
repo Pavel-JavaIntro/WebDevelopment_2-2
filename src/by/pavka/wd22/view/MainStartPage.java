@@ -1,11 +1,6 @@
 package by.pavka.wd22.view;
 
 import by.pavka.wd22.controller.TextController;
-import by.pavka.wd22.model.TextProcessingException;
-import by.pavka.wd22.entity.TextNode;
-import by.pavka.wd22.model.parser.PredefinedTextParserFactory;
-import by.pavka.wd22.model.parser.TextParser;
-import by.pavka.wd22.model.reader.TextFileReader;
 
 import java.io.IOException;
 
@@ -38,8 +33,8 @@ public class MainStartPage {
     "}</code>";
 
     TextController textController = TextController.getInstance();
-    textController.createTextNode(text);
-    textController.createTextNode(text2);
-    textController.createTextNode(null);
+    textController.createAndDisplayTextNode(text);
+    textController.createAndDisplayTextNode(text2);
+    textController.createAndDisplayTextNode(null);
   }
 }

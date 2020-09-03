@@ -58,4 +58,9 @@ public class TextComposite implements TextNode {
   public int hashCode() {
     return Arrays.hashCode(textNodes.toArray());
   }
+
+  @Override
+  public String toString() {
+    return textNodes.toString();
+  }
 }

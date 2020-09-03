@@ -7,6 +7,8 @@ public class EndPage {
   public static void displayTextFromNode(TextNode textNode) {
     System.out.println("PARSED TEXT: ");
     System.out.println(textNode.toText());
+    System.out.println("RAW TEXT: ");
+    System.out.println(textNode);
     System.out.println();
   }
 

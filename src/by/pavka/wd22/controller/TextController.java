@@ -15,7 +15,7 @@ public class TextController {
     return instance;
   }
 
-  public void createTextNode(String input) {
+  public void createAndDisplayTextNode(String input) {
     TextParser textParser = PredefinedTextParserFactory.getInstance().getParser();
     TextNode result;
     if (input == null) {

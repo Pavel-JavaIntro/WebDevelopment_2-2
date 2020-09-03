@@ -50,11 +50,6 @@ public class TextLeaf implements TextNode {
   }
 
   @Override
-  public String toString() {
-    return getValue().trim();
-  }
-
-  @Override
   public boolean equals(Object o) {
     if (this == o) {
       return true;
@@ -69,5 +64,10 @@ public class TextLeaf implements TextNode {
   @Override
   public int hashCode() {
     return value.hashCode();
+  }
+
+  @Override
+  public String toString() {
+    return getValue().trim();
   }
 }
