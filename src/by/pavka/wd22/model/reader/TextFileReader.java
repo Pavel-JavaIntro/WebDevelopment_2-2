@@ -1,7 +1,5 @@
 package by.pavka.wd22.model.reader;
 
-import by.pavka.wd22.model.TextProcessingException;
-
 import java.io.*;
 import java.util.ResourceBundle;
 

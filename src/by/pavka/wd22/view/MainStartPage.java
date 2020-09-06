@@ -1,6 +1,9 @@
 package by.pavka.wd22.view;
 
 import by.pavka.wd22.controller.TextController;
+import by.pavka.wd22.controller.request.TextRequest;
+import by.pavka.wd22.controller.request.impl.MaxSameWordRequest;
+import by.pavka.wd22.controller.request.impl.ReadTextRequest;
 
 import java.io.IOException;
 
@@ -33,8 +36,15 @@ public class MainStartPage {
     "}</code>";
 
     TextController textController = TextController.getInstance();
-    textController.createAndDisplayTextNode(text);
-    textController.createAndDisplayTextNode(text2);
-    textController.createAndDisplayTextNode(null);
+
+    TextRequest request = new ReadTextRequest(null);
+    textController.dispatch(request);
+    request = new ReadTextRequest(text);
+    textController.dispatch(request);
+    request = new ReadTextRequest(text2);
+    textController.dispatch(request);
+
+    request = new MaxSameWordRequest(null);
+    textController.dispatch(request);
   }
 }

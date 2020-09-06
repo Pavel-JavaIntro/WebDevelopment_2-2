@@ -4,11 +4,9 @@ import by.pavka.wd22.model.TextProcessingException;
 import by.pavka.wd22.entity.TextNode;
 
 public class EndPage {
-  public static void displayTextFromNode(TextNode textNode) {
+  public static void displayResult(String result) {
     System.out.println("PARSED TEXT: ");
-    System.out.println(textNode.toText());
-    System.out.println("RAW TEXT: ");
-    System.out.println(textNode);
+    System.out.println(result);
     System.out.println();
   }
 

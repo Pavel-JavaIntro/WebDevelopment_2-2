@@ -1,10 +1,16 @@
 package by.pavka.wd22.controller;
 
+import by.pavka.wd22.controller.request.TextRequest;
+import by.pavka.wd22.controller.response.TextResponse;
 import by.pavka.wd22.entity.TextNode;
+import by.pavka.wd22.entity.impl.TextComposite;
 import by.pavka.wd22.model.TextProcessingException;
 import by.pavka.wd22.model.parser.PredefinedTextParserFactory;
 import by.pavka.wd22.model.parser.TextParser;
+import by.pavka.wd22.model.service.TextService;
 import by.pavka.wd22.view.EndPage;
+
+import java.util.ArrayList;
 
 public class TextController {
   private static final TextController instance = new TextController();
@@ -15,24 +21,14 @@ public class TextController {
     return instance;
   }
 
-  public void createAndDisplayTextNode(String input) {
-    TextParser textParser = PredefinedTextParserFactory.getInstance().getParser();
-    TextNode result;
-    if (input == null) {
-      try {
-        result = textParser.parseFromFile();
-      } catch (TextProcessingException e) {
-        EndPage.displayError(e);
-        return;
-      }
-    } else {
-      try {
-        result = textParser.parse(input);
-      } catch (TextProcessingException e) {
-        EndPage.displayError(e);
-        return;
-      }
+  public void dispatch(TextRequest request) {
+    String command = request.command();
+    TextService service = TextServiceDispatcher.getService(command);
+    try {
+      TextResponse result = service.process(request.getData());
+      EndPage.displayResult(result.display());
+    } catch (TextProcessingException e) {
+      EndPage.displayError(e);
     }
-    EndPage.displayTextFromNode(result);
   }
 }

@@ -5,11 +5,11 @@ import by.pavka.wd22.entity.TextNode;
 import java.util.*;
 
 public class TextComposite implements TextNode {
-  private Deque<TextNode> textNodes;
+  private List<TextNode> textNodes;
   private String unhandledText;
 
   public TextComposite() {
-    textNodes = new ArrayDeque<>();
+    textNodes = new ArrayList<>();
   }
 
   @Override
@@ -24,20 +24,19 @@ public class TextComposite implements TextNode {
 
   @Override
   public boolean add(TextNode textNode) {
-    return textNodes.offer(textNode);
+    return textNodes.add(textNode);
   }
 
   @Override
-  public Iterator<TextNode> createIterator() {
-    return textNodes.iterator();
+  public boolean isLeaf() {
+    return false;
   }
 
   @Override
   public String toText() {
     StringBuilder stringBuilder = new StringBuilder();
-    Iterator<TextNode> iterator = createIterator();
-    while (iterator.hasNext()) {
-      stringBuilder.append(iterator.next().toText());
+    for (TextNode node : textNodes) {
+      stringBuilder.append(node.toText());
     }
     return stringBuilder.toString();
   }
@@ -51,7 +50,7 @@ public class TextComposite implements TextNode {
       return false;
     }
     TextComposite that = (TextComposite) o;
-    return Arrays.equals(textNodes.toArray(), that.textNodes.toArray());
+    return textNodes.equals(that.textNodes);
   }
 
   @Override
@@ -62,5 +61,27 @@ public class TextComposite implements TextNode {
   @Override
   public String toString() {
     return textNodes.toString();
+  }
+
+  @Override
+  public TextComposite clone() {
+    TextComposite copy = new TextComposite();
+    copy.setUnhandledText(unhandledText);
+    for (TextNode node : textNodes) {
+      TextNode copyNode = node.clone();
+      copy.add(copyNode);
+    }
+    return copy;
+  }
+
+  public List<TextLeaf> listChildren(List<TextLeaf> leaves) {
+    for (TextNode node : textNodes) {
+      if (node.isLeaf()) {
+        leaves.add((TextLeaf) node);
+      } else {
+        ((TextComposite) node).listChildren(leaves);
+      }
+    }
+    return leaves;
   }
 }

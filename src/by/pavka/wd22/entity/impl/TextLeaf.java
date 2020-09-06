@@ -26,8 +26,8 @@ public class TextLeaf implements TextNode {
   }
 
   @Override
-  public Iterator<TextNode> createIterator() {
-    return new TextLeafIterator();
+  public boolean isLeaf() {
+    return true;
   }
 
   @Override
@@ -69,5 +69,12 @@ public class TextLeaf implements TextNode {
   @Override
   public String toString() {
     return getValue().trim();
+  }
+
+  @Override
+  public TextLeaf clone() {
+    TextLeaf copy = new TextLeaf(value);
+    copy.setUnhandledText(unhandledText);
+    return copy;
   }
 }

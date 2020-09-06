@@ -1,11 +1,15 @@
 package by.pavka.wd22.entity;
 
-import java.util.Iterator;
+public interface TextNode extends Cloneable {
+  boolean add(TextNode textNode);
 
-public interface TextNode {
-    boolean add(TextNode textNode);
-    Iterator<TextNode> createIterator();
-    void setUnhandledText(String text);
-    String getUnhandledText();
-    String toText();
+  boolean isLeaf();
+
+  void setUnhandledText(String text);
+
+  String getUnhandledText();
+
+  String toText();
+
+  TextNode clone();
 }
