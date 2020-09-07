@@ -5,7 +5,6 @@ import by.pavka.wd22.entity.TextNode;
 
 public class EndPage {
   public static void displayResult(String result) {
-    System.out.println("PARSED TEXT: ");
     System.out.println(result);
     System.out.println();
   }

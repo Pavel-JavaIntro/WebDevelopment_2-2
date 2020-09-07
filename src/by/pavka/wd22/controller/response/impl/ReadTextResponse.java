@@ -10,6 +10,6 @@ public class ReadTextResponse extends TextResponse<TextNode> {
 
     @Override
     public String display() {
-       return getResult().toText();
+       return "PARSED TEXT:\n" + getResult().toText();
     }
 }

@@ -10,6 +10,6 @@ public class MaxSameWordResponse extends TextResponse<MaxSameWordService.MaxSame
 
     @Override
     public String display() {
-        return getResult().toText();
+        return "MAX WORD OCCURRENCE:\n" + getResult().toText();
     }
 }
