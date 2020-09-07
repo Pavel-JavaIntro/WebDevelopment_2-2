@@ -74,12 +74,16 @@ public class TextComposite implements TextNode {
     return copy;
   }
 
-  public List<TextLeaf> listChildren(List<TextLeaf> leaves) {
+  public List<TextNode> listChildren() {
+    return textNodes;
+  }
+
+  public List<TextLeaf> listLeaves(List<TextLeaf> leaves) {
     for (TextNode node : textNodes) {
       if (node.isLeaf()) {
         leaves.add((TextLeaf) node);
       } else {
-        ((TextComposite) node).listChildren(leaves);
+        ((TextComposite) node).listLeaves(leaves);
       }
     }
     return leaves;

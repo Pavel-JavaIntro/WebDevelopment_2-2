@@ -32,12 +32,14 @@ public class TextParserImpl implements TextParser {
           throw new TextProcessingException("Text not parsed", result);
         case LEAF:
           textFragment = TextNodeType.LEAF.getTextFragment();
+          System.out.println("LEAF: " + textFragment);
           TextNode leaf = new TextLeaf(textFragment);
           result.add(leaf);
           text = text.substring(textFragment.length());
           break;
         case COMPOSITE:
           textFragment = TextNodeType.COMPOSITE.getTextFragment();
+          System.out.println("COMPOSITE: " + textFragment);
           TextNode composite = child.parse(textFragment);
           result.add(composite);
           text = text.substring(textFragment.length());

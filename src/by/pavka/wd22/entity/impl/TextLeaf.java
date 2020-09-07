@@ -58,12 +58,12 @@ public class TextLeaf implements TextNode {
       return false;
     }
     TextLeaf textLeaf = (TextLeaf) o;
-    return value.equals(textLeaf.value);
+    return toString().equals(textLeaf.toString());
   }
 
   @Override
   public int hashCode() {
-    return value.hashCode();
+    return toString().hashCode();
   }
 
   @Override

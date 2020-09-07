@@ -1,5 +1,5 @@
 First, second; (third)! My name is Pavel. "The Beatles" was established in 1960. 2 Years later...
-Self-made man Jo from IBM -         a computer         manufacturer - likes "Latto".
+Self-made man Jo is from IBM -         a computer         manufacturer - and he likes "Latto".
 <code> int i = 9;
 String s = new String();
 </code>
