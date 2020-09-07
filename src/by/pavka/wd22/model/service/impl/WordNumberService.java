@@ -26,10 +26,10 @@ public class WordNumberService implements TextService<String, List<TextNode>> {
     List<TextNode> sentences = new ArrayList<>();
     for (TextNode child : ((TextComposite)node).listChildren()) {
       if (!child.isLeaf()) {
-        sentences.add((TextComposite)child);
+        sentences.add(child);
       }
     }
-    Collections.sort(sentences, new WordNumberComparator());
+    sentences.sort(new WordNumberComparator());
     return new WordNumberResponse(sentences);
   }
 
@@ -38,25 +38,17 @@ public class WordNumberService implements TextService<String, List<TextNode>> {
     @Override
     public int compare(TextNode o1, TextNode o2) {
       TextLeafFilter filter = new TextLeafFilter(WORD);
-      List<TextLeaf> first = new ArrayList<>();
-      if (!o1.isLeaf()) {
-        List<TextLeaf> wordBlocks = ((TextComposite)o1).listLeaves(new ArrayList<>());
-        for (TextLeaf leaf : wordBlocks) {
-          if (filter.validate(leaf)) {
-            first.add(leaf);
-          }
-        }
-      }
-      List<TextLeaf> second = new ArrayList<>();
-      if (!o2.isLeaf()) {
-        List<TextLeaf> wordBlocks = ((TextComposite)o2).listLeaves(new ArrayList<>());
-        for (TextLeaf leaf : wordBlocks) {
-          if (filter.validate(leaf)) {
-            second.add(leaf);
-          }
-        }
-      }
+      List<TextLeaf> first = findFilteredLeaves(o1, filter);
+      List<TextLeaf> second = findFilteredLeaves(o2, filter);
       return first.size() - second.size();
+    }
+
+    private List<TextLeaf> findFilteredLeaves(TextNode node, TextLeafFilter textFilter) {
+      List<TextLeaf> result = new ArrayList<>();
+      if (!node.isLeaf()) {
+        result.addAll(textFilter.filter(((TextComposite)node).listLeaves(new ArrayList<>())));
+      }
+      return result;
     }
   }
 }

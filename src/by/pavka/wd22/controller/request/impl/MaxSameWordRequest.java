@@ -9,6 +9,6 @@ public class MaxSameWordRequest extends TextRequest<String> {
 
     @Override
     public String command() {
-        return "MAXSAMEWORD";
+        return "MAX_SAME_WORD";
     }
 }

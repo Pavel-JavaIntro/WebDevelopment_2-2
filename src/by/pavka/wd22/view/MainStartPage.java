@@ -2,6 +2,7 @@ package by.pavka.wd22.view;
 
 import by.pavka.wd22.controller.TextController;
 import by.pavka.wd22.controller.request.TextRequest;
+import by.pavka.wd22.controller.request.impl.FirstSentenceWordRequest;
 import by.pavka.wd22.controller.request.impl.MaxSameWordRequest;
 import by.pavka.wd22.controller.request.impl.ReadTextRequest;
 import by.pavka.wd22.controller.request.impl.WordNumberRequest;
@@ -18,7 +19,8 @@ public class MainStartPage {
             + "j = i; String s = \"line\"; </code>";
 
     String text2 =  "My favorite way to read a small file is to use a BufferedReader and a " +
-            "StringBuilder. It is very simple and to the point (though not particularly " +
+            "StringBuilder. My  guess is... It is very simple and to the point (though not " +
+            "particularly " +
             "effective, but good enough for most cases)."
 
     + "<code>BufferedReader br = new BufferedReader(new FileReader(\"file.txt\"));" +
@@ -51,6 +53,9 @@ public class MainStartPage {
     textController.dispatch(request);
 
     request = new WordNumberRequest(text);
+    textController.dispatch(request);
+
+    request = new FirstSentenceWordRequest(text2);
     textController.dispatch(request);
   }
 }

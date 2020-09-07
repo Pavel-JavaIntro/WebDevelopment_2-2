@@ -2,13 +2,13 @@ package by.pavka.wd22.controller.request.impl;
 
 import by.pavka.wd22.controller.request.TextRequest;
 
-public class WordNumberRequest extends TextRequest<String> {
-  public WordNumberRequest(String data) {
+public class FirstSentenceWordRequest extends TextRequest<String> {
+  public FirstSentenceWordRequest(String data) {
     super(data);
   }
 
   @Override
   public String command() {
-    return "WORD_NUMBER";
+    return "FIRST_SENTENCE_WORD";
   }
 }
