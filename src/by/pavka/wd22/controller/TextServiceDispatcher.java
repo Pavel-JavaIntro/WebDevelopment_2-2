@@ -3,6 +3,7 @@ package by.pavka.wd22.controller;
 import by.pavka.wd22.model.service.impl.MaxSameWordService;
 import by.pavka.wd22.model.service.impl.ReadTextService;
 import by.pavka.wd22.model.service.TextService;
+import by.pavka.wd22.model.service.impl.WordNumberService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +13,7 @@ public class TextServiceDispatcher {
     static {
         dispatcher.put("READ", new ReadTextService());
         dispatcher.put("MAXSAMEWORD", new MaxSameWordService());
+        dispatcher.put("WORDNUMBER", new WordNumberService());
     }
 
     private TextServiceDispatcher() {}
