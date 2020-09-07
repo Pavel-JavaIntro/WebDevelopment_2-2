@@ -12,8 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TextParserImpl implements TextParser {
-  private String compositeFormat;
-  private String leafFormat;
+  private final String compositeFormat;
+  private final String leafFormat;
   private TextParser child;
 
   public TextParserImpl(String compositeFormat, String leafFormat) {

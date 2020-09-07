@@ -3,7 +3,7 @@ package by.pavka.wd22.model;
 import by.pavka.wd22.entity.TextNode;
 
 public class TextProcessingException extends Exception {
-  private TextNode textNode;
+  private final TextNode textNode;
 
   public TextProcessingException(TextNode textNode) {
     this.textNode = textNode;

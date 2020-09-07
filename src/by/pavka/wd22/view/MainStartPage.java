@@ -2,19 +2,17 @@ package by.pavka.wd22.view;
 
 import by.pavka.wd22.controller.TextController;
 import by.pavka.wd22.controller.request.TextRequest;
-import by.pavka.wd22.controller.request.impl.FirstSentenceWordRequest;
-import by.pavka.wd22.controller.request.impl.MaxSameWordRequest;
-import by.pavka.wd22.controller.request.impl.ReadTextRequest;
-import by.pavka.wd22.controller.request.impl.WordNumberRequest;
-
-import java.io.IOException;
+import by.pavka.wd22.controller.request.impl.*;
 
 public class MainStartPage {
 
-  public static void main(String[] args) throws IOException {
+  /*
+   * This method uses 3 texts, one is from a file, and calls different services through the controller
+   */
+  public static void main(String[] args) {
     String text =
         "Love me,    tender; love me sweet. Never let me go...    \n"
-            + "Your      love makes my life complete! It's 5 o'clock!?    \"Immortal\" combat.\n"
+            + "Your      love makes my life complete! It's 5 o'clock!?    \"Immortal\" combat. What?\n"
             + "33 Dead self-flying <code> class Test() {}</code> men.\n <code>   int i = 8;\nint "
             + "j = i; String s = \"line\"; </code>";
 
@@ -40,7 +38,7 @@ public class MainStartPage {
 
     TextController textController = TextController.getInstance();
 
-    TextRequest request = new ReadTextRequest(null);
+    TextRequest<?> request = new ReadTextRequest(null);
     textController.dispatch(request);
 
     request = new ReadTextRequest(text);
@@ -56,6 +54,12 @@ public class MainStartPage {
     textController.dispatch(request);
 
     request = new FirstSentenceWordRequest(text2);
+    textController.dispatch(request);
+
+    request = new InterrogativeWordRequest(new InterrogativeWordRequest.StringAndNumber(text, 4));
+    textController.dispatch(request);
+
+    request = new ExchangeWordRequest(text);
     textController.dispatch(request);
   }
 }

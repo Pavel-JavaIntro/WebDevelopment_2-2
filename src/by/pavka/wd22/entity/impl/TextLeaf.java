@@ -2,8 +2,6 @@ package by.pavka.wd22.entity.impl;
 
 import by.pavka.wd22.entity.TextNode;
 
-import java.util.Iterator;
-
 public class TextLeaf implements TextNode {
   private String value;
   private String unhandledText;
@@ -18,6 +16,10 @@ public class TextLeaf implements TextNode {
 
   public String getValue() {
     return value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
   }
 
   @Override
@@ -43,7 +45,7 @@ public class TextLeaf implements TextNode {
   @Override
   public String toText() {
     String processedValue = value;
-    if (value.startsWith(" ") | value.startsWith("\t")) {
+    if (value.startsWith(" ") || value.startsWith("\t")) {
       processedValue = value.replaceAll("^[ \t]+", " ");
     }
     return processedValue;

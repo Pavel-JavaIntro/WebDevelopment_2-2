@@ -5,6 +5,9 @@ import by.pavka.wd22.entity.TextNode;
 import by.pavka.wd22.model.TextProcessingException;
 import by.pavka.wd22.model.service.TextService;
 
+/*
+ * This service just helps to return a TextNode from a given text
+ */
 public class ReadTextService implements TextService<String, TextNode> {
   @Override
   public ReadTextResponse process(String data) throws TextProcessingException {

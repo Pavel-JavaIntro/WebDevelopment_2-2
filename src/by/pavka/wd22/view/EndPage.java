@@ -1,9 +1,11 @@
 package by.pavka.wd22.view;
 
 import by.pavka.wd22.model.TextProcessingException;
-import by.pavka.wd22.entity.TextNode;
 
 public class EndPage {
+
+  private EndPage() {}
+
   public static void displayResult(String result) {
     System.out.println(result);
     System.out.println();

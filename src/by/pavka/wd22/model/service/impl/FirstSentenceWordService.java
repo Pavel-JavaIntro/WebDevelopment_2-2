@@ -1,6 +1,5 @@
 package by.pavka.wd22.model.service.impl;
 
-import by.pavka.wd22.controller.response.TextResponse;
 import by.pavka.wd22.controller.response.impl.FirstSentenceWordResponse;
 import by.pavka.wd22.entity.TextNode;
 import by.pavka.wd22.entity.impl.TextComposite;
@@ -12,11 +11,14 @@ import by.pavka.wd22.model.service.TextService;
 import java.util.ArrayList;
 import java.util.List;
 
+/* This service returns a word (by default the first one) from the first sentence, which is not presented in the other
+ * sentences of the text
+ */
 public class FirstSentenceWordService implements TextService<String, String> {
   public static final String WORD = "[\\w\"'-]+";
 
   @Override
-  public TextResponse<String> process(String data) throws TextProcessingException {
+  public FirstSentenceWordResponse process(String data) throws TextProcessingException {
     TextNode node = constructNode(data);
     if (node.isLeaf()) {
       return new FirstSentenceWordResponse("");
@@ -38,7 +40,7 @@ public class FirstSentenceWordService implements TextService<String, String> {
     List<TextLeaf> firstSentenceWords =
         textLeafFilter.filter(firstSentence.listLeaves(new ArrayList<>()));
     List<TextLeaf> otherSentenceWords = new ArrayList<>();
-    for (int i = index++; i < length; i++) {
+    for (int i = index + 1; i < length; i++) {
       TextNode childNode = children.get(i);
       if (!childNode.isLeaf()) {
         otherSentenceWords.addAll(

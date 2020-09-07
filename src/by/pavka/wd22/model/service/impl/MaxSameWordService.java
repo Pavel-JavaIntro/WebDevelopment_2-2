@@ -1,6 +1,5 @@
 package by.pavka.wd22.model.service.impl;
 
-import by.pavka.wd22.controller.response.TextResponse;
 import by.pavka.wd22.controller.response.impl.MaxSameWordResponse;
 import by.pavka.wd22.entity.TextNode;
 import by.pavka.wd22.entity.impl.TextComposite;
@@ -10,13 +9,14 @@ import by.pavka.wd22.model.parser.TextLeafFilter;
 import by.pavka.wd22.model.service.TextService;
 
 import java.util.*;
-
+/*
+ * This service returns a word that is met in the most number of sentences of the text, and the number of occurrence
+ */
 public class MaxSameWordService implements TextService<String, MaxSameWordService.MaxSameWord> {
-
   public static final String WORD = "[\\w\"'-]+";
 
   @Override
-  public TextResponse<MaxSameWord> process(String data) throws TextProcessingException {
+  public MaxSameWordResponse process(String data) throws TextProcessingException {
     Map<TextLeaf, Integer> results = new HashMap<>();
     TextLeafFilter filter = new TextLeafFilter(WORD);
     TextNode node = constructNode(data);

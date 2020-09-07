@@ -1,6 +1,5 @@
 package by.pavka.wd22.model.service.impl;
 
-import by.pavka.wd22.controller.response.TextResponse;
 import by.pavka.wd22.controller.response.impl.WordNumberResponse;
 import by.pavka.wd22.entity.TextNode;
 import by.pavka.wd22.entity.impl.TextComposite;
@@ -10,15 +9,17 @@ import by.pavka.wd22.model.parser.TextLeafFilter;
 import by.pavka.wd22.model.service.TextService;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/*
+ * This service sorts sentences of the text by their word numbers
+ */
 public class WordNumberService implements TextService<String, List<TextNode>> {
   public static final String WORD = "[\\w\"'-]+";
 
   @Override
-  public TextResponse<List<TextNode>> process(String data) throws TextProcessingException {
+  public WordNumberResponse process(String data) throws TextProcessingException {
     TextNode node = constructNode(data);
     if (node.isLeaf()) {
       return new WordNumberResponse(new ArrayList<>());
