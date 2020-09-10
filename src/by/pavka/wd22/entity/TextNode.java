@@ -1,6 +1,8 @@
 package by.pavka.wd22.entity;
 
-public interface TextNode extends Cloneable {
+import java.io.Serializable;
+
+public interface TextNode extends Cloneable, Serializable {
   boolean add(TextNode textNode);
 
   boolean isLeaf();

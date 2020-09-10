@@ -15,11 +15,11 @@ public class TextController {
     return instance;
   }
 
-  public void dispatch(TextRequest<?> request) {
+  public <T, V> void dispatch(TextRequest<T> request) {
     String command = request.command();
-    TextService service = TextServiceDispatcher.getService(command);
+    TextService<T, V> service = TextServiceDispatcher.getService(command);
     try {
-      TextResponse<?> result = service.process(request.getData());
+      TextResponse<V> result = service.process(request.getData());
       EndPage.displayResult(result.display());
     } catch (TextProcessingException e) {
       EndPage.displayError(e);
